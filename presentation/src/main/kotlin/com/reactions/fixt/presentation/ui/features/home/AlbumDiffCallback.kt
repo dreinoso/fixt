@@ -1,4 +1,4 @@
-package com.reactions.fixt.presentation.ui.home
+package com.reactions.fixt.presentation.ui.features.home
 
 import androidx.recyclerview.widget.DiffUtil
 import com.reactions.fixt.domain.entity.Entity

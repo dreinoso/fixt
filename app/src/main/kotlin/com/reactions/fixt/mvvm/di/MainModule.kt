@@ -3,9 +3,9 @@ package com.reactions.fixt.mvvm.di
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import com.reactions.fixt.mvvm.di.home.HomeFragmentModule
-import com.reactions.fixt.presentation.ui.MainActivity
+import com.reactions.fixt.presentation.ui.features.main.MainActivity
 
-@Module(includes = [HomeFragmentModule::class])
+@Module(includes = [FragmentsModule::class])
 abstract class MainModule {
 
     //@PerActivity

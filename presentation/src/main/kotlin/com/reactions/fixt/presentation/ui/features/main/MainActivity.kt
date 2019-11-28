@@ -1,4 +1,4 @@
-package com.reactions.fixt.presentation.ui
+package com.reactions.fixt.presentation.ui.features.main
 
 import android.os.Bundle
 import com.reactions.fixt.presentation.R

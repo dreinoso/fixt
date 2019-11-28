@@ -49,6 +49,7 @@ dependencies {
     // database
     //kapt presentationDependencies.realmFieldNamesHelper
     implementation presentationDependencies.room
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt presentationDependencies.roomCompiler
     implementation presentationDependencies.roomCommon
     // network

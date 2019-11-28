@@ -1,4 +1,4 @@
-package com.reactions.fixt.presentation.ui.home
+package com.reactions.fixt.presentation.ui.features.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
