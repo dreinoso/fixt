@@ -1,2 +1,1 @@
-include ':app', ':data', ':presentation', ':domain'
-rootProject.name='fixt'
+include ':presentation', ':data', ':domain', ':app'
