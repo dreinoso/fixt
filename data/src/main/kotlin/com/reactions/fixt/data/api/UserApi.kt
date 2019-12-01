@@ -4,7 +4,7 @@ package com.com.reactions.fixt.data.api
 /**
  * Get Users
  */
-interface UserApi {
+interface sUserApi {
 
     /**
      * Get all users

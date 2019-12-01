@@ -11,7 +11,7 @@ import com.reactions.fixt.data.datasource.album.AlbumsDatabaseDataSource
 import com.reactions.fixt.data.repository.BaseRepositoryImpl
 import com.reactions.fixt.domain.common.ResultState
 import com.reactions.fixt.domain.entity.Entity
-import com.reactions.fixt.domain.repository.album.AlbumsRepository
+import com.reactions.fixt.domain.repository.repositories.AlbumsRepository
 
 /**
  * Album repository implementation

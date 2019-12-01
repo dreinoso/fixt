@@ -1,4 +1,4 @@
-package com.reactions.fixt.domain.repository.album
+package com.reactions.fixt.domain.repository.repositories
 
 import androidx.paging.PagedList
 import io.reactivex.Flowable

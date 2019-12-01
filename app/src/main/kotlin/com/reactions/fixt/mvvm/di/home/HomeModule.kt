@@ -9,7 +9,7 @@ import com.reactions.fixt.data.datasource.album.AlbumsDatabaseDataSource
 import com.reactions.fixt.data.datasource.album.AlbumsDatabaseDataSourceImpl
 import com.reactions.fixt.data.db.album.AlbumDao
 import com.reactions.fixt.data.repository.album.AlbumsRepositoryImpl
-import com.reactions.fixt.domain.repository.album.AlbumsRepository
+import com.reactions.fixt.domain.repository.repositories.AlbumsRepository
 import com.reactions.fixt.domain.usecase.album.GetAlbumsUseCase
 import com.reactions.fixt.domain.usecase.album.GetAlbumsUseCaseImpl
 import com.reactions.fixt.presentation.common.transformer.AsyncFTransformer

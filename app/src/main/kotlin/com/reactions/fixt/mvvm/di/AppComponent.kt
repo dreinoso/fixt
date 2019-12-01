@@ -5,6 +5,7 @@ import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import com.reactions.fixt.mvvm.MyApplication
 import com.reactions.fixt.mvvm.di.home.HomeModule
+import com.reactions.fixt.mvvm.di.main.GoogleMainModule
 import javax.inject.Singleton
 
 @Singleton
@@ -13,7 +14,8 @@ import javax.inject.Singleton
     ViewModelModule::class,
     AppModule::class,
     MainModule::class,
-    HomeModule::class
+    HomeModule::class,
+    GoogleMainModule::class
 ])
 interface AppComponent : AndroidInjector<MyApplication> {
     @Component.Builder

@@ -3,6 +3,7 @@ package com.reactions.fixt.mvvm.di
 import dagger.Module
 import dagger.Provides
 import com.com.reactions.fixt.data.api.AlbumApi
+import com.reactions.fixt.data.api.GoogleApi
 import com.reactions.fixt.mvvm.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -42,5 +43,8 @@ class NetModule {
 
     @Provides
     fun providesAlbumApi(retrofit: Retrofit): AlbumApi = retrofit.create(AlbumApi::class.java)
+
+    @Provides
+    fun providesGoogleApi(retrofit: Retrofit): GoogleApi = retrofit.create(GoogleApi::class.java)
 
 }

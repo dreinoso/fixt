@@ -6,7 +6,7 @@ import com.reactions.fixt.domain.common.ResultState
 import com.reactions.fixt.domain.common.transformer.FTransformer
 import com.reactions.fixt.domain.common.transformer.STransformer
 import com.reactions.fixt.domain.entity.Entity
-import com.reactions.fixt.domain.repository.album.AlbumsRepository
+import com.reactions.fixt.domain.repository.repositories.AlbumsRepository
 
 /**
  * Album use case implementation
