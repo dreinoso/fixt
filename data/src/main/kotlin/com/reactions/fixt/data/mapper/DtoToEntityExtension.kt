@@ -24,8 +24,8 @@ fun GoogleApi.Dto.Fixture?.map() = Entity.Fixture(
         state = state
 )
 
-fun GoogleApi.Dto.Results.map() = Entity.Results(
-        id = id,
+fun GoogleApi.Dto.Results?.map() = Entity.Results(
+        id = this!!.id,
         type = type,
         homeTeam = homeTeam.map(),
         awayTeam = awayTeam.map(),

@@ -44,9 +44,15 @@ class MainFragment : BaseFragment() {
         vpFragments = getView()!!.findViewById(R.id.vp_fragments)
         initTab()
         viewModel.fixturesLiveData.observe(this, Observer { fixtures -> setFixtures(fixtures) })
+        viewModel.resultsMutable.observe(this, Observer { results -> setResults(results) })
         viewModel.requestFixtures()
+        viewModel.requestResults()
         observe(viewModel.fixturesLiveData, ::setFixtures)
                 Log.d("MainFragment", viewModel.getFixtures().toString())
+    }
+
+    private fun setResults(results: List<Entity.Results>?) {
+        Log.d("MainFragment", results.toString())
     }
 
     private fun initTab() {

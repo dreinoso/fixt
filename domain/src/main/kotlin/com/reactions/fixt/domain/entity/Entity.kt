@@ -24,13 +24,13 @@ sealed class Entity {
 
     data class Results(
             val id: Long,
-            val type: String,
-            val homeTeam: HomeTeam,
-            val awayTeam: AwayTeam,
-            val date: String,
+            val type: String?,
+            val homeTeam: HomeTeam?,
+            val awayTeam: AwayTeam?,
+            val date: String?,
             val competitionStage: CompetitionStage?,
-            val venue: Venue,
-            val score: Score
+            val venue: Venue?,
+            val score: Score?
     ) : Entity()
 
     data class HomeTeam(
@@ -66,8 +66,8 @@ sealed class Entity {
     ) : Entity()
 
     data class Score(
-            val home: Int,
-            val away: Int,
-            val winner: String
+            val home: Int?,
+            val away: Int?,
+            val winner: String?
     ) : Entity()
 }
