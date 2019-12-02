@@ -30,8 +30,18 @@ class FixturesAdapter internal constructor(private val context: Context?) : Recy
     }
 
     override fun getItemCount(): Int {
-        Log.d("adapter", fixturesList.size.toString())
         return fixturesList.size
+    }
+
+    fun filter(fixturesList: Collection<Entity.Fixture>, date: String) {
+        var filteredCollection : MutableList<Entity.Fixture> = mutableListOf()
+        fixturesList.forEach() {
+            if (it.date?.startsWith(date)!!) {
+                filteredCollection.add(it)
+            }
+        }
+        Log.d("adapter", "date " + date + " filteredCollection " + filteredCollection.toString())
+        setFixtures(filteredCollection)
     }
 
     inner class FixturesViewHolder internal constructor(val view: View) : RecyclerView.ViewHolder(view) {

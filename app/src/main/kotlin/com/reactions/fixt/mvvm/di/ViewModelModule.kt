@@ -8,6 +8,7 @@ import dagger.multibindings.IntoMap
 import com.reactions.fixt.mvvm.di.qualifier.ViewModelKey
 import com.reactions.fixt.presentation.ui.features.home.HomeViewModel
 import com.reactions.fixt.presentation.ui.features.main.MainViewModel
+import javax.inject.Singleton
 
 @Module
 abstract class ViewModelModule {
@@ -22,6 +23,7 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
+    @Singleton
     @ViewModelKey(MainViewModel::class)
     internal abstract fun bindMainViewModel(viewModel: MainViewModel): ViewModel
 }
