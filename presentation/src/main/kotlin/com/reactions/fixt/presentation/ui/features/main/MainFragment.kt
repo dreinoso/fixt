@@ -28,7 +28,6 @@ class MainFragment : BaseFragment() {
     lateinit var tlFragments: TabLayout
     lateinit var vpFragments: ViewPager
 
-
     private val viewModel: MainViewModel by lazy {
         ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
     }
