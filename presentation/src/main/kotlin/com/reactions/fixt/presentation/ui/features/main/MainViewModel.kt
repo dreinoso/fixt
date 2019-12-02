@@ -15,9 +15,8 @@ class MainViewModel @Inject constructor(private val getFixturesUseCase: GetFixtu
 
     val fixturesLiveData: MutableLiveData<List<Entity.Fixture>> = MutableLiveData()
     val resultsMutable: MutableLiveData<List<Entity.Results>> = MutableLiveData()
-    val year = MutableLiveData<Int>()
-    val month = MutableLiveData<Int>()
-    val league = MutableLiveData<String>()
+    val filterDate = MutableLiveData<String>()
+    val filterLeague = MutableLiveData<String>()
 
 
     fun requestFixtures() {

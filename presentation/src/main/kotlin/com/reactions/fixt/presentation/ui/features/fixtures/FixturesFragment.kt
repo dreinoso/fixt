@@ -44,7 +44,7 @@ class FixturesFragment : BaseFragment() {
         rvRules?.adapter = fixturesAdapter
         viewModel.fixturesLiveData.observe(this, Observer { fixtures -> setAdapter(fixtures) })
         viewModel.requestFixtures()
-        viewModel.month.observe(this, Observer { month -> filterFixtures() })
+        viewModel.filterDate.observe(this, Observer { filterDate -> filterFixtures(filterDate) })
     }
 
     fun setAdapter(fixtures : List<Entity.Fixture>) {
@@ -52,9 +52,8 @@ class FixturesFragment : BaseFragment() {
         fixturesAdapter.setFixtures(fixtures)
     }
 
-    fun filterFixtures() {
+    fun filterFixtures(filterDate: String) {
         Log.d("fixturesfragment", "filterFixtures ")
-        val month = if (viewModel.month.value!! > 9) viewModel.month.value.toString()  else "0" + viewModel.month.value.toString()
-        fixturesAdapter.filter(viewModel.fixturesLiveData.value!!, viewModel.year.value.toString() + "-" + month)
+        fixturesAdapter.filter(viewModel.fixturesLiveData.value!!, filterDate)
     }
 }

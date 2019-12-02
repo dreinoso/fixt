@@ -10,13 +10,10 @@ import android.widget.DatePicker
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
-import com.reactions.fixt.domain.entity.Entity
 import com.reactions.fixt.presentation.R
 import com.reactions.fixt.presentation.ui.base.BaseFragment
 import com.reactions.fixt.presentation.ui.features.common.MonthYearPickerDialog
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
 
@@ -30,7 +27,6 @@ class MainFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
 
     lateinit var tlFragments: TabLayout
     lateinit var vpFragments: ViewPager
-    lateinit var fabDatePicker: FloatingActionButton
 
     private val viewModel: MainViewModel by lazy {
         ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
@@ -51,23 +47,16 @@ class MainFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
         fab_date_picker.setOnClickListener { pd.show(fragmentManager, "MonthYearPickerDialog") }
     }
 
-    private fun setResults(results: List<Entity.Results>?) {
-        Log.d("MainFragment", results.toString())
-    }
-
     private fun initTab() {
         val adapter = MainFragmentAdapter(fragmentManager)
         vpFragments.adapter = adapter
         tlFragments.setupWithViewPager(vpFragments)
     }
 
-    private fun setFixtures(fixtures : List<Entity.Fixture>) {
-        Log.d("MainFragment", fixtures.toString())
-    }
-
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, p3: Int) {
         Log.d("mainfragment", "onDataset")
-        viewModel.year.postValue(year)
-        viewModel.month.postValue(month)
+        val month = if (month > 9) month.toString() else "0$month"
+        val filterDate = "$year-$month"
+        viewModel.filterDate.postValue(filterDate)
     }
 }
