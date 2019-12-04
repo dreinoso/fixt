@@ -6,4 +6,9 @@
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
     <string name="select_league">Select a league</string>
+    <string name="set_league">Set League</string>
+    <string name="set_date">Set Date</string>
+    <string name="show_all">Show All</string>
+    <string name="all">All</string>
+    <string name="postponed">Postponed</string>
 </resources>

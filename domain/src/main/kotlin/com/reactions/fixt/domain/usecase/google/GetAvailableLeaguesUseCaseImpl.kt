@@ -2,7 +2,7 @@ package com.reactions.fixt.domain.usecase.google
 
 import com.reactions.fixt.domain.entity.Entity
 
-class GetAvailableLeaguesUseCaseImpl() : GetAvailableLeaguesUseCase {
+class GetAvailableLeaguesUseCaseImpl : GetAvailableLeaguesUseCase {
 
     override fun getAvailableLeagues(fixtures: List<Entity.Fixture>): MutableSet<String> {
         val leagues: MutableSet<String> = mutableSetOf()

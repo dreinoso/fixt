@@ -47,6 +47,16 @@
             app:layout_constraintTop_toBottomOf="@id/tv_place_and_date"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <View
+            android:layout_width="50dp"
+            android:layout_height="1dp"
+            android:background="@color/colorAccentLighter"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_place_and_date" />
+
         <TextView
             android:id="@+id/tv_away_team"
             android:layout_width="wrap_content"
@@ -64,8 +74,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:layout_marginEnd="8dp"
-            android:text="SAT 7"
+            android:text="@string/postponed"
+            android:textColor="@color/colorAccentLighter"
             android:textSize="24sp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

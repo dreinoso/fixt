@@ -8,8 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
@@ -47,8 +45,16 @@ class MainFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
         initTab()
         val pd = MonthYearPickerDialog()
         pd.setListener(this)
-        fab_date_picker.setOnClickListener { pd.show(fragmentManager, "MonthYearPickerDialog") }
-        fab_league_picker.setOnClickListener { showLeagueSelector() }
+        btn_date_picker.setOnClickListener { pd.show(fragmentManager, "MonthYearPickerDialog") }
+        btn_league_picker.setOnClickListener { showLeagueSelector() }
+        btn_show_all.setOnClickListener { clearFilters() }
+    }
+
+    private fun clearFilters() {
+        viewModel.filterLeague.postValue("")
+        viewModel.filterDate.postValue("")
+        tv_date.text = getString(R.string.all)
+        tv_league.text = getString(R.string.all)
     }
 
     private fun initTab() {
@@ -61,6 +67,7 @@ class MainFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
         Log.d("mainfragment", "onDataset")
         val month = if (month > 9) month.toString() else "0$month"
         val filterDate = "$year-$month"
+        tv_date.text = filterDate
         viewModel.filterDate.postValue(filterDate)
     }
 
@@ -70,6 +77,7 @@ class MainFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
         builder?.setTitle(getString(R.string.select_league))
         builder?.setItems(array) { _, which ->
             val selected = array?.get(which)
+            tv_league.text = selected.toString()
             viewModel.filterLeague.postValue(selected)
         }
         val dialog = builder?.create()
