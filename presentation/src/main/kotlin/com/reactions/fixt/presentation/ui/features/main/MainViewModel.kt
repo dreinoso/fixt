@@ -1,5 +1,6 @@
 package com.reactions.fixt.presentation.ui.features.main
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.disposables.Disposable
 import com.reactions.fixt.domain.entity.Entity
@@ -14,34 +15,33 @@ class MainViewModel @Inject constructor(private val getFixturesUseCase: GetFixtu
                                         private val getResultsUseCase: GetResultsUseCase,
                                         private val getAvailableLeaguesUseCase: GetAvailableLeaguesUseCase) : BaseViewModel() {
 
-    private var tempDispossable: Disposable? = null
+    private var requestFixturesDisposable: Disposable? = null
+    private var requestResultsDisposable: Disposable? = null
 
-    val fixturesLiveData: MutableLiveData<List<Entity.Fixture>> = MutableLiveData()
+    val fixturesMutable: MutableLiveData<List<Entity.Fixture>> = MutableLiveData()
     val resultsMutable: MutableLiveData<List<Entity.Results>> = MutableLiveData()
     val filterDate = MutableLiveData<String>().defaultValue("")
     val filterLeague = MutableLiveData<String>().defaultValue("")
     var availableLeagues = MutableLiveData<MutableSet<String>>()
 
     fun requestFixtures() {
-        if (tempDispossable?.isDisposed != true)
-            tempDispossable?.dispose()
-        tempDispossable = getFixturesUseCase.getFixtures().subscribe { resultState ->
-            fixturesLiveData.postValue(resultState)
+        Log.d("mainviewmodel", "requestFixtures")
+        if (requestFixturesDisposable?.isDisposed != true)
+            requestFixturesDisposable?.dispose()
+        requestFixturesDisposable = getFixturesUseCase.getFixtures().subscribe { resultState ->
+            fixturesMutable.postValue(resultState)
             availableLeagues.value = getAvailableLeaguesUseCase.getAvailableLeagues(resultState)
         }
-        tempDispossable?.track()
+        requestFixturesDisposable?.track()
     }
 
     fun requestResults() {
-        if (tempDispossable?.isDisposed != true)
-            tempDispossable?.dispose()
-        tempDispossable = getResultsUseCase.getResults().subscribe { resultState ->
+        Log.d("mainviewmodel", "requestResults")
+        if (requestResultsDisposable?.isDisposed != true)
+            requestResultsDisposable?.dispose()
+        requestResultsDisposable = getResultsUseCase.getResults().subscribe { resultState ->
             resultsMutable.postValue(resultState)
         }
-        tempDispossable?.track()
-    }
-
-    fun getFixtures(): List<Entity.Fixture>? {
-        return fixturesLiveData.value
+        requestResultsDisposable?.track()
     }
 }

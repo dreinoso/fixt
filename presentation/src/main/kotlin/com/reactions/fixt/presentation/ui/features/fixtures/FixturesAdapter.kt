@@ -17,6 +17,7 @@ class FixturesAdapter internal constructor(private val context: Context?) : Recy
     fun setFixtures(fixturesList: Collection<Entity.Fixture>) {
         this.fixturesList.clear()
         this.fixturesList.addAll(fixturesList)
+        Log.d("FixturesAdapter", "fixts " + fixturesList)
         notifyDataSetChanged()
     }
 
@@ -59,6 +60,8 @@ class FixturesAdapter internal constructor(private val context: Context?) : Recy
             tvAwayTeam.text = fixture.awayTeam?.name
             if (fixture.state?.toLowerCase().equals("postponed")) {
                 tvPostPoned.visibility = View.VISIBLE
+            } else {
+                tvPostPoned.visibility = View.GONE
             }
         }
     }

@@ -43,7 +43,7 @@ class FixturesFragment : BaseFragment() {
         rvRules?.adapter = fixturesAdapter
         val dividerItemDecoration = DividerItemDecoration(context, resources.configuration.orientation)
         rvRules?.addItemDecoration(dividerItemDecoration)
-        viewModel.fixturesLiveData.observe(this, Observer { fixtures -> setAdapter(fixtures) })
+        viewModel.fixturesMutable.observe(this, Observer { fixtures -> setAdapter(fixtures) })
         viewModel.requestFixtures()
         viewModel.filterDate.observe(this, Observer { filterFixtures() })
         viewModel.filterLeague.observe(this, Observer { filterFixtures() })
@@ -54,8 +54,8 @@ class FixturesFragment : BaseFragment() {
     }
 
     fun filterFixtures() {
-        if (viewModel.fixturesLiveData.value != null) {
-            fixturesAdapter.filter(viewModel.fixturesLiveData.value!!, viewModel.filterDate.value!!,
+        if (viewModel.fixturesMutable.value != null) {
+            fixturesAdapter.filter(viewModel.fixturesMutable.value!!, viewModel.filterDate.value!!,
                     viewModel.filterLeague.value!!)
         }
     }

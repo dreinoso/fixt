@@ -2,6 +2,8 @@
 <resources>
     <color name="colorPrimary">#63FFE4</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#A71313</color>
+    <color name="colorAccent">#E90303</color>
     <color name="colorAccentLighter">#C94242</color>
+    <color name="winner">#60EC4C</color>
+    <color name="looser">#FF1550</color>
 </resources>
