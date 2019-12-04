@@ -64,17 +64,13 @@ class MainFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
         viewModel.filterDate.postValue(filterDate)
     }
 
-    private fun showLeagueSelector(){
+    private fun showLeagueSelector() {
         val array = viewModel.availableLeagues.value?.toTypedArray()
-        viewModel.availableLeagues.value?.forEach {
-            Log.d("mainfragment", "showLeagueSelector $it")
-        }
-        Log.d("mainfragment", "showLeagueSelector 0:" + viewModel.availableLeagues.value?.elementAt(0))
         val builder = activity?.let { AlertDialog.Builder(it) }
         builder?.setTitle(getString(R.string.select_league))
         builder?.setItems(array) { _, which ->
             val selected = array?.get(which)
-            Log.d("mainfragment", "selected " + selected)
+            viewModel.filterLeague.postValue(selected)
         }
         val dialog = builder?.create()
         dialog?.show()

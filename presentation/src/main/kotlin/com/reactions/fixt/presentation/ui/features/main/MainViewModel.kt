@@ -6,6 +6,7 @@ import com.reactions.fixt.domain.entity.Entity
 import com.reactions.fixt.domain.usecase.google.GetAvailableLeaguesUseCase
 import com.reactions.fixt.domain.usecase.google.GetFixturesUseCase
 import com.reactions.fixt.domain.usecase.google.GetResultsUseCase
+import com.reactions.fixt.presentation.common.extension.defaultValue
 import com.reactions.fixt.presentation.ui.base.BaseViewModel
 import javax.inject.Inject
 
@@ -17,8 +18,8 @@ class MainViewModel @Inject constructor(private val getFixturesUseCase: GetFixtu
 
     val fixturesLiveData: MutableLiveData<List<Entity.Fixture>> = MutableLiveData()
     val resultsMutable: MutableLiveData<List<Entity.Results>> = MutableLiveData()
-    val filterDate = MutableLiveData<String>()
-    val filterLeague = MutableLiveData<String>()
+    val filterDate = MutableLiveData<String>().defaultValue("")
+    val filterLeague = MutableLiveData<String>().defaultValue("")
     var availableLeagues = MutableLiveData<MutableSet<String>>()
 
     fun requestFixtures() {

@@ -33,14 +33,14 @@ class FixturesAdapter internal constructor(private val context: Context?) : Recy
         return fixturesList.size
     }
 
-    fun filter(fixturesList: Collection<Entity.Fixture>, date: String) {
+    fun filter(fixturesList: Collection<Entity.Fixture>, date: String, league: String) {
         var filteredCollection : MutableList<Entity.Fixture> = mutableListOf()
         fixturesList.forEach() {
-            if (it.date?.startsWith(date)!!) {
+            if ((date.isEmpty() || it.date?.startsWith(date)!!) &&
+                    (league.isEmpty() || it.competitionStage?.competition?.name?.equals(league)!!)) {
                 filteredCollection.add(it)
             }
         }
-        Log.d("adapter", "date " + date + " filteredCollection " + filteredCollection.toString())
         setFixtures(filteredCollection)
     }
 

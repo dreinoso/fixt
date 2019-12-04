@@ -1,7 +1,6 @@
 package com.reactions.fixt.presentation.ui.features.fixtures
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,16 +41,18 @@ class FixturesFragment : BaseFragment() {
         rvRules?.adapter = fixturesAdapter
         viewModel.fixturesLiveData.observe(this, Observer { fixtures -> setAdapter(fixtures) })
         viewModel.requestFixtures()
-        viewModel.filterDate.observe(this, Observer { filterDate -> filterFixtures(filterDate) })
+        viewModel.filterDate.observe(this, Observer { filterFixtures() })
+        viewModel.filterLeague.observe(this, Observer { filterFixtures() })
     }
 
     fun setAdapter(fixtures : List<Entity.Fixture>) {
-        Log.d("fixturesfragment", "setAdapter " + fixtures.toString())
         fixturesAdapter.setFixtures(fixtures)
     }
 
-    fun filterFixtures(filterDate: String) {
-        Log.d("fixturesfragment", "filterFixtures ")
-        fixturesAdapter.filter(viewModel.fixturesLiveData.value!!, filterDate)
+    fun filterFixtures() {
+        if (viewModel.fixturesLiveData.value != null) {
+            fixturesAdapter.filter(viewModel.fixturesLiveData.value!!, viewModel.filterDate.value!!,
+                    viewModel.filterLeague.value!!)
+        }
     }
 }
