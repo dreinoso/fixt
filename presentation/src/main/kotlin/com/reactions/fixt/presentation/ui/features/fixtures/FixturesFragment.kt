@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.reactions.fixt.domain.entity.Entity
@@ -14,6 +15,7 @@ import com.reactions.fixt.presentation.R
 import com.reactions.fixt.presentation.ui.base.BaseFragment
 import com.reactions.fixt.presentation.ui.features.main.MainViewModel
 import javax.inject.Inject
+
 
 class FixturesFragment : BaseFragment() {
     lateinit var fixturesAdapter : FixturesAdapter
@@ -39,6 +41,8 @@ class FixturesFragment : BaseFragment() {
         rvRules = view?.findViewById(R.id.rv_fixtures)
         rvRules?.layoutManager = LinearLayoutManager(activity)
         rvRules?.adapter = fixturesAdapter
+        val dividerItemDecoration = DividerItemDecoration(context, resources.configuration.orientation)
+        rvRules?.addItemDecoration(dividerItemDecoration)
         viewModel.fixturesLiveData.observe(this, Observer { fixtures -> setAdapter(fixtures) })
         viewModel.requestFixtures()
         viewModel.filterDate.observe(this, Observer { filterFixtures() })

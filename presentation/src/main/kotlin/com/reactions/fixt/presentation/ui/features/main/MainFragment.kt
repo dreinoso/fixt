@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -18,7 +19,6 @@ import com.reactions.fixt.presentation.ui.features.common.MonthYearPickerDialog
 import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
 
-
 class MainFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
 
 //    val TAG = MainFragment::class.qualifiedName.toString()
@@ -28,6 +28,7 @@ class MainFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
 
     lateinit var tlFragments: TabLayout
     lateinit var vpFragments: ViewPager
+    lateinit var tvLeague: TextView
 
     private val viewModel: MainViewModel by lazy {
         ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
@@ -42,6 +43,7 @@ class MainFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
         super.onViewCreated(view, savedInstanceState)
         tlFragments = getView()!!.findViewById(R.id.tl_fragments)
         vpFragments = getView()!!.findViewById(R.id.vp_fragments)
+        tvLeague = getView()!!.findViewById(R.id.tv_league)
         initTab()
         val pd = MonthYearPickerDialog()
         pd.setListener(this)
@@ -54,7 +56,7 @@ class MainFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
         viewModel.filterLeague.postValue("")
         viewModel.filterDate.postValue("")
         tv_date.text = getString(R.string.all)
-        tv_league.text = getString(R.string.all)
+        tvLeague.text = getString(R.string.all)
     }
 
     private fun initTab() {
@@ -77,7 +79,7 @@ class MainFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
         builder?.setTitle(getString(R.string.select_league))
         builder?.setItems(array) { _, which ->
             val selected = array?.get(which)
-            tv_league.text = selected.toString()
+            tvLeague.text = selected
             viewModel.filterLeague.postValue(selected)
         }
         val dialog = builder?.create()
