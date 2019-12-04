@@ -5,4 +5,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
+    <string name="select_league">Select a league</string>
 </resources>

@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
@@ -45,6 +48,7 @@ class MainFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
         val pd = MonthYearPickerDialog()
         pd.setListener(this)
         fab_date_picker.setOnClickListener { pd.show(fragmentManager, "MonthYearPickerDialog") }
+        fab_league_picker.setOnClickListener { showLeagueSelector() }
     }
 
     private fun initTab() {
@@ -58,5 +62,21 @@ class MainFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
         val month = if (month > 9) month.toString() else "0$month"
         val filterDate = "$year-$month"
         viewModel.filterDate.postValue(filterDate)
+    }
+
+    private fun showLeagueSelector(){
+        val array = viewModel.availableLeagues.value?.toTypedArray()
+        viewModel.availableLeagues.value?.forEach {
+            Log.d("mainfragment", "showLeagueSelector $it")
+        }
+        Log.d("mainfragment", "showLeagueSelector 0:" + viewModel.availableLeagues.value?.elementAt(0))
+        val builder = activity?.let { AlertDialog.Builder(it) }
+        builder?.setTitle(getString(R.string.select_league))
+        builder?.setItems(array) { _, which ->
+            val selected = array?.get(which)
+            Log.d("mainfragment", "selected " + selected)
+        }
+        val dialog = builder?.create()
+        dialog?.show()
     }
 }

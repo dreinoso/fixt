@@ -7,10 +7,7 @@ import com.reactions.fixt.data.datasource.google.GoogleApiDataSource
 import com.reactions.fixt.data.datasource.google.GoogleApiDataSourceImpl
 import com.reactions.fixt.data.repository.google.GoogleRepositoryImpl
 import com.reactions.fixt.domain.repository.repositories.GoogleRepository
-import com.reactions.fixt.domain.usecase.google.GetFixturesUseCase
-import com.reactions.fixt.domain.usecase.google.GetFixturesUseCaseImpl
-import com.reactions.fixt.domain.usecase.google.GetResultsUseCase
-import com.reactions.fixt.domain.usecase.google.GetResultsUseCaseImpl
+import com.reactions.fixt.domain.usecase.google.*
 
 @Module
 class GoogleMainModule {
@@ -29,4 +26,7 @@ class GoogleMainModule {
 
     @Provides
     fun provideGetResultsUseCaseImpl(repository : GoogleRepository): GetResultsUseCase = GetResultsUseCaseImpl(repository)
+
+    @Provides
+    fun provideGetAvailableLeaguesCaseImpl(): GetAvailableLeaguesUseCase = GetAvailableLeaguesUseCaseImpl()
 }
