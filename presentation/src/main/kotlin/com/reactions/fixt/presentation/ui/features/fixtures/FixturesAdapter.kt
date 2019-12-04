@@ -49,6 +49,7 @@ class FixturesAdapter internal constructor(private val context: Context?) : Recy
         private val tvPlaceAndDate: TextView = view.findViewById(R.id.tv_place_and_date)
         private val tvHomeTeam: TextView = this.view.findViewById(R.id.tv_home_team)
         private val tvAwayTeam: TextView = view.findViewById(R.id.tv_away_team)
+        private val tvPostPoned: TextView = view.findViewById(R.id.tv_postponed)
 
         fun bind(fixture: Entity.Fixture) {
             tvLeague.text = fixture.competitionStage?.competition?.name.toString()
@@ -56,6 +57,9 @@ class FixturesAdapter internal constructor(private val context: Context?) : Recy
             tvPlaceAndDate.text = placeAmdDate
             tvHomeTeam.text = fixture.homeTeam?.name
             tvAwayTeam.text = fixture.awayTeam?.name
+            if (fixture.state?.toLowerCase().equals("postponed")) {
+                tvPostPoned.visibility = View.VISIBLE
+            }
         }
     }
 }
